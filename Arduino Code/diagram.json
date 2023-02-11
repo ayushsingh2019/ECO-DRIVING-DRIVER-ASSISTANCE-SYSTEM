@@ -1,0 +1,46 @@
+{
+  "version": 1,
+  "author": "Mr Anderson",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-esp32-devkit-v1", "id": "esp", "top": 0, "left": 0, "attrs": {} },
+    { "type": "wokwi-mpu6050", "id": "imu1", "top": 289.84, "left": 2.56, "attrs": {} },
+    {
+      "type": "wokwi-hc-sr04",
+      "id": "ultrasonic1",
+      "top": -31.78,
+      "left": -287.39,
+      "attrs": { "distance": "309" }
+    },
+    { "type": "wokwi-slide-switch", "id": "sw1", "top": -142.35, "left": 231.49, "attrs": {} },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": -101.6,
+      "left": 151.05,
+      "attrs": { "value": "1000" }
+    },
+    { "type": "wokwi-ky-040", "id": "encoder1", "top": 233.61, "left": -301.35, "attrs": {} }
+  ],
+  "connections": [
+    [ "esp:TX0", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX0", "$serialMonitor:TX", "", [] ],
+    [ "imu1:VCC", "esp:3V3", "red", [ "v-47.01", "h49.32", "v-60.15" ] ],
+    [ "imu1:GND", "esp:GND.1", "black", [ "v-54.41", "h86.04", "v-70.51" ] ],
+    [ "ultrasonic1:VCC", "esp:VIN", "red", [ "v0" ] ],
+    [ "ultrasonic1:GND", "esp:GND.2", "black", [ "v0" ] ],
+    [ "ultrasonic1:TRIG", "esp:D5", "green", [ "v26.09", "h246.62" ] ],
+    [ "ultrasonic1:ECHO", "esp:D18", "green", [ "v5.82", "h297.39" ] ],
+    [ "imu1:SDA", "esp:D21", "green", [ "v-70.79", "h129.48", "v0.57" ] ],
+    [ "imu1:SCL", "esp:D22", "green", [ "v-89.67", "h131.32", "v-178.52" ] ],
+    [ "sw1:3", "esp:GND.2", "green", [ "v80.54", "h-286.22", "v179.94" ] ],
+    [ "r1:1", "esp:3V3", "green", [ "h-12.32", "v219.33", "h-0.49", "v30.99" ] ],
+    [ "r1:2", "sw1:2", "green", [ "v-2.37", "h17.66" ] ],
+    [ "esp:D27", "r1:2", "green", [ "h-25.58", "v-116.89", "h230.24", "v-68.96", "h0.19" ] ],
+    [ "encoder1:GND", "esp:GND.2", "black", [ "h146.91", "v-130.22" ] ],
+    [ "encoder1:VCC", "esp:VIN", "red", [ "h134.39", "v-111.64" ] ],
+    [ "encoder1:DT", "esp:D14", "green", [ "h119.21", "v-131.05" ] ],
+    [ "encoder1:CLK", "esp:D12", "green", [ "h92.64", "v-111.19" ] ]
+  ],
+  "dependencies": {}
+}
